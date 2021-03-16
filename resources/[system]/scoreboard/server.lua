@@ -1,6 +1,6 @@
-RegisterNetEvent("Scoreboard:GetPlayers")
-AddEventHandler("Scoreboard:GetPlayers", function()
-  TriggerClientEvent("Scoreboard:ReceivePlayers", source, GetPlayers())
+RegisterNetEvent("scoreboard:getPlayers")
+AddEventHandler("scoreboard:getPlayers", function()
+  TriggerClientEvent("scoreboard:receivePlayers", source, GetPlayers())
 end)
 
 columns = {
@@ -14,18 +14,18 @@ columns = {
   }
 }
 
-RegisterNetEvent("Scoreboard:RequestColumns")
-AddEventHandler("Scoreboard:RequestColumns", function()
+RegisterNetEvent("scoreboard:requestColumns")
+AddEventHandler("scoreboard:requestColumns", function()
   local ply = Player(source)
   for columnName, columnData in pairs(columns) do
     ply.state[columnName] = columnData.defaultValue
   end
   ply.state.ID = source
   ply.state.Name = GetPlayerName(source)
-  TriggerClientEvent("Scoreboard:ReceiveColumns", source, columns)
+  TriggerClientEvent("scoreboard:receiveColumns", source, columns)
 end)
 
-AddEventHandler("Scoreboard:AddColumn", function(name, _friendlyName, _defaultValue)
+AddEventHandler("scoreboard:addColumn", function(name, _friendlyName, _defaultValue)
   columns[name] = {
     friendlyName = _friendlyName,
     defaultValue = _defaultValue
@@ -33,14 +33,14 @@ AddEventHandler("Scoreboard:AddColumn", function(name, _friendlyName, _defaultVa
   for _, playerId in pairs(GetPlayers()) do
     Player(playerId).state[name] = _defaultValue
   end
-  TriggerClientEvent("Scoreboard:ReceiveColumns", -1, columns)
+  TriggerClientEvent("scoreboard:receiveColumns", -1, columns)
 end)
 
-AddEventHandler("Scoreboard:RemoveColumn", function(name)
+AddEventHandler("scoreboard:removeColumn", function(name)
   columns[name] = nil
-  TriggerClientEvent("Scoreboard:ReceiveColumns", -1, columns)
+  TriggerClientEvent("scoreboard:receiveColumns", -1, columns)
 end)
 
-AddEventHandler("Scoreboard:UpdateColumnValue", function(src, name, value)
+AddEventHandler("scoreboard:updateColumnValue", function(src, name, value)
   Player(src).state[name] = value
 end)
