@@ -26,8 +26,8 @@ AddEventHandler("scoreboard:receivePlayers", function(_players)
   for _, playerId in pairs(players) do
     local ply = Player(playerId)
     nuiData[playerId] = {}
-    for columnName, columnData in pairs(columns) do
-      nuiData[playerId][columnName] = ply.state[columnName]
+    for id, columnData in pairs(columns) do
+      nuiData[playerId][columnData.friendlyName] = ply.state[columnData.friendlyName]
     end
   end
   print(json.encode(nuiData))
