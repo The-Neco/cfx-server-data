@@ -6,11 +6,13 @@ end)
 columns = {
   ["ID"] = {
     friendlyName = "Player ID",
-    defaultValue = 0
+    defaultValue = 0,
+    position = 0
   },
   ["Name"] = {
     friendlyName = "Name",
-    defaultValue = "***Invalid***"
+    defaultValue = "***Invalid***",
+    position = 1
   }
 }
 
@@ -25,10 +27,11 @@ AddEventHandler("scoreboard:requestColumns", function()
   TriggerClientEvent("scoreboard:receiveColumns", source, columns)
 end)
 
-AddEventHandler("scoreboard:addColumn", function(name, _friendlyName, _defaultValue)
+AddEventHandler("scoreboard:addColumn", function(name, _friendlyName, _defaultValue, _position)
   columns[name] = {
     friendlyName = _friendlyName,
-    defaultValue = _defaultValue
+    defaultValue = _defaultValue,
+    posititon = _position
   }
   for _, playerId in pairs(GetPlayers()) do
     Player(playerId).state[name] = _defaultValue
