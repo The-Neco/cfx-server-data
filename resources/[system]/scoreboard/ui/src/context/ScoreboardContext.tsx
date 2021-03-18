@@ -27,9 +27,9 @@ export const ScoreboardProvider = ({ children }: { children: React.ReactNode }) 
 interface Context {
 	visibility: boolean;
 	setVisibility: (show: boolean) => void;
-	columns: any[];
+	columns: any;
 	setColumns: (columns: any[]) => void;
-	players: any[];
+	players: any;
 	setPlayers: (players: any) => void;
 }
 

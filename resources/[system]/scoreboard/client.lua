@@ -8,6 +8,15 @@ RegisterCommand("-scoreboard", function(source, args, rawcommand)
 
 end, false)
 
+RegisterCommand('getscoreboard', function()
+  TriggerServerEvent('scoreboard:requestColumns')
+  SendNUIMessage({
+    app = 'CfxScoreboard',
+    method = 'setVisibility',
+    data = true
+  })
+end)
+
 players = {}
 
 RegisterNetEvent("scoreboard:receivePlayers")
@@ -30,6 +39,7 @@ TriggerServerEvent("scoreboard:requestColumns")
 RegisterNetEvent("scoreboard:receiveColumns")
 AddEventHandler("scoreboard:receiveColumns", function(_columns)
   columns = _columns
+
   -- Send to NUI to populate columns
   SendNUIMessage({
     app = 'CfxScoreboard',

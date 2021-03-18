@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.prod.js --color --progress",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,5 +39,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.1.0",
+    "html-loader": "^2.1.1",
+    "html-webpack-plugin": "4",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.18",
+    "webpack-cli": "^4.5.0"
   }
 }

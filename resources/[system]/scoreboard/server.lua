@@ -4,12 +4,12 @@ AddEventHandler("scoreboard:getPlayers", function()
 end)
 
 columns = {
-  ["ID"] = {
+  {
     friendlyName = "Player ID",
     defaultValue = 0,
     position = 0
   },
-  ["Name"] = {
+  {
     friendlyName = "Name",
     defaultValue = "***Invalid***",
     position = 1
