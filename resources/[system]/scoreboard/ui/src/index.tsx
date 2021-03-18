@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ScoreboardProvider } from "./context/ScoreboardContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ScoreboardProvider>
+      <App />
+    </ScoreboardProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
