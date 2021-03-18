@@ -3,26 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import Scoreboard from "./Scoreboard";
 import { useScoreboard } from "./context/ScoreboardContext";
+import { useNuiService } from "./utils/useNuiService";
 
 function App() {
-  setTimeout(() => {
-    window.dispatchEvent(
-      new MessageEvent('message', {
-        data: {
-          app: 'CfxScoreboard',
-          method: 'setData',
-          data: [
-            {
-              type: 'column',
-              data: {
-
-              }
-            }
-          ]
-        }
-      })
-    )
-  }, 1000)
+  useNuiService();
 
   const { visibility } = useScoreboard();
   return (

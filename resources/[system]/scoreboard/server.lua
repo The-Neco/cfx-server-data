@@ -16,6 +16,7 @@ columns = {
   }
 }
 
+
 RegisterNetEvent("scoreboard:requestColumns")
 AddEventHandler("scoreboard:requestColumns", function()
   local ply = Player(source)

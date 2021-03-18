@@ -5,18 +5,18 @@ export const ScoreboardContext = createContext<Context | undefined>(undefined);
 
 export const ScoreboardProvider = ({ children }: { children: React.ReactNode }) => {
 	const [visibility, setVisibility] = useState<boolean>(false);
-	const [data, setData] = useState(null);
+	const [columns, setColumns] = useState(null);
 	const [players, setPlayers] = useState(null);
 
 	useNuiEvent('CfxScoreboard', 'setVisibility', setVisibility);
-	useNuiEvent('CfxScoreboard', 'setData', setData);
-	useNuiEvent('CfxScoreboard', 'setPlayers', setPlayers)
+	useNuiEvent('CfxScoreboard', 'setPlayers', setPlayers);
+	useNuiEvent('CfxScoreboard', 'setColumns', setColumns);
 
 	const value = {
 		visibility,
 		setVisibility,
-		data,
-		setData,
+		columns,
+		setColumns,
 		players,
 		setPlayers
 	}
@@ -27,8 +27,8 @@ export const ScoreboardProvider = ({ children }: { children: React.ReactNode }) 
 interface Context {
 	visibility: boolean;
 	setVisibility: (show: boolean) => void;
-	data: any[];
-	setData: (show: boolean) => void;
+	columns: any[];
+	setColumns: (columns: any[]) => void;
 	players: any[];
 	setPlayers: (players: any) => void;
 }
@@ -39,6 +39,6 @@ export const useScoreboard = () => {
 }
 
 export const useData = () => {
-	const { data, setData } = useContext(ScoreboardContext);
-	return { data, setData };
+	const { columns, setColumns } = useContext(ScoreboardContext);
+	return { columns, setColumns };
 }

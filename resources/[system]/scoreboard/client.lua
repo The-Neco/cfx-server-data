@@ -31,6 +31,11 @@ RegisterNetEvent("scoreboard:receiveColumns")
 AddEventHandler("scoreboard:receiveColumns", function(_columns)
   columns = _columns
   -- Send to NUI to populate columns
+  SendNUIMessage({
+    app = 'CfxScoreboard',
+    method = 'setColumns',
+    data = columns
+  })
 end)
 
 --[[
