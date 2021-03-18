@@ -2,20 +2,20 @@ RegisterKeyMapping("+scoreboard", "Open the scoreboard.", "keyboard", "z")
 
 RegisterCommand("+scoreboard", function(source, args, rawcommand)
   TriggerServerEvent("scoreboard:getPlayers")
+  SendNUIMessage({
+      app = 'CfxScoreboard',
+      method = 'setVisibility',
+      data = true
+    })
 end, false)
 
 RegisterCommand("-scoreboard", function(source, args, rawcommand)
-
-end, false)
-
-RegisterCommand('getscoreboard', function()
-  TriggerServerEvent('scoreboard:requestColumns')
-  SendNUIMessage({
+SendNUIMessage({
     app = 'CfxScoreboard',
     method = 'setVisibility',
-    data = true
+    data = false
   })
-end)
+end, false)
 
 players = {}
 
