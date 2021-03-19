@@ -60,6 +60,10 @@
   background-color: rgba(31, 31, 31, 0.75);
 }
 
+.content-table tbody tr:hover {
+  background-color: rgba(31, 31, 31, 0.75);
+}
+
 ::-webkit-scrollbar {
   background: #414a4d;
   width: 10px;
