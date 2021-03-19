@@ -63,6 +63,10 @@
   background-color: rgba(31, 31, 31, 1.0);
 }
 
+.content-table tbody tr:nth-child(2n):hover {
+  background-color: rgba(31, 31, 31, 0.75);
+}
+
 ::-webkit-scrollbar {
   background: #414a4d;
   width: 10px;
