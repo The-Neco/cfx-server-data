@@ -8,6 +8,7 @@ function App() {
   useNuiService();
   const { visibility } = useScoreboard();
 
+  /*
   setTimeout(() => {
     window.dispatchEvent(
       new MessageEvent('message', {
@@ -63,6 +64,7 @@ function App() {
       })
     )
   }, 1000)
+  */
 
   return (
     <div className="scoreboardWrapper">
