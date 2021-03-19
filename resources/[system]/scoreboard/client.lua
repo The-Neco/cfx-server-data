@@ -23,12 +23,12 @@ RegisterNetEvent("scoreboard:receivePlayers")
 AddEventHandler("scoreboard:receivePlayers", function(_players)
   players = _players
   local nuiData = {}
-  for _, playerId in pairs(players) do
-    local ply = Player(playerId)
+  for playerId, playerData in pairs(players) do
     local nextId = #nuiData+1
     nuiData[nextId] = {}
     for id, columnData in pairs(columns) do
-      nuiData[nextId][id] = ply.state[columnData.friendlyName]
+      print(id, playerData[columnData.friendlyName])
+      nuiData[nextId][id] = playerData[columnData.friendlyName]
     end
   end
   -- send to NUI to populate players

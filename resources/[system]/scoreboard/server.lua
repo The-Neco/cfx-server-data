@@ -1,6 +1,6 @@
 RegisterNetEvent("scoreboard:getPlayers")
 AddEventHandler("scoreboard:getPlayers", function()
-  TriggerClientEvent("scoreboard:receivePlayers", source, GetPlayers())
+  TriggerClientEvent("scoreboard:receivePlayers", source, players)
 end)
 
 columns = {
@@ -16,14 +16,16 @@ columns = {
   }
 }
 
+players = {}
+
 RegisterNetEvent("scoreboard:requestColumns")
 AddEventHandler("scoreboard:requestColumns", function()
-  local ply = Player(source)
+  players[source] = {}
   for id, columnData in pairs(columns) do
-    ply.state[columnData.friendlyName] = columnData.defaultValue
+    players[source][columnData.friendlyName] = columnData.defaultValue
   end
-  ply.state["Player ID"] = source
-  ply.state["Name"] = GetPlayerName(source)
+  players[source]["Player ID"] = source
+  players[source]["Name"] = GetPlayerName(source)
   TriggerClientEvent("scoreboard:receiveColumns", source, columns)
 end)
 
@@ -34,7 +36,7 @@ AddEventHandler("scoreboard:addColumn", function(_friendlyName, _defaultValue, _
     posititon = _position
   }
   for _, playerId in pairs(GetPlayers()) do
-    Player(playerId).state[_friendlyName] = _defaultValue
+    players[tonumber(playerId)][_friendlyName] = _defaultValue
   end
   TriggerClientEvent("scoreboard:receiveColumns", -1, columns)
 end)
@@ -50,12 +52,16 @@ end)
 AddEventHandler("scoreboard:updateColumnValue", function(src, name, value)
   local columnId = getColumnFromName(name)
   if columnId then
-    Player(src).state[name] = value
+    players[src][name] = value
   end
 end)
 
+AddEventHandler("playerDropped", function(reason)
+  players[source] = nil
+end)
+
 function getColumnFromName(name)
-  for id, data in pairs(column) do
+  for id, data in pairs(columns) do
     if data.friendlyName == name then
       return id
     end
