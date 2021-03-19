@@ -97,8 +97,9 @@ local function refreshThemes()
   end
 
   SendNUIMessage({
-    type = 'ON_UPDATE_THEMES',
-    themes = themes
+    app = 'CfxScoreboard',
+    method = 'updateThemes',
+    data = themes
   })
 end
 

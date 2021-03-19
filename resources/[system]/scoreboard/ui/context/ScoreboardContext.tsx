@@ -9,9 +9,36 @@ export const ScoreboardProvider = ({ children }: { children: React.ReactNode }) 
 	const [columns, setColumns] = useState(null);
 	const [players, setPlayers] = useState(null);
 
+	const removeThemes = () => {
+		for (let i = 0; i < document.styleSheets.length; i++) {
+			const styleSheet = document.styleSheets[i];
+			const node = styleSheet.ownerNode as Element;
+
+			if (node.getAttribute("data-theme")) {
+				node.parentNode?.removeChild(node);
+			}
+		}
+	}
+
+	const addThemes = (themes: any[]) => {
+		removeThemes();
+		for (const [id, data] of Object.entries(themes)) {
+			if (data.styleSheet) {
+				const link = document.createElement("link");
+				link.rel = "stylesheet";
+				link.type = "text/css";
+				link.href = data.baseUrl + data.styleSheet;
+				link.setAttribute("data-theme", id);
+				console.log(data.baseUrl + data.styleSheet);
+				document.head.appendChild(link);
+			}
+		}
+	}
+
 	useNuiEvent('CfxScoreboard', 'setVisibility', setVisibility);
 	useNuiEvent('CfxScoreboard', 'setPlayers', setPlayers);
 	useNuiEvent('CfxScoreboard', 'setColumns', setColumns);
+	useNuiEvent('CfxScoreboard', 'updateThemes', addThemes);
 
 	const value = {
 		visibility,
