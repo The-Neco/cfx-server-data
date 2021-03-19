@@ -25,13 +25,18 @@ AddEventHandler("scoreboard:receivePlayers", function(_players)
   local nuiData = {}
   for _, playerId in pairs(players) do
     local ply = Player(playerId)
-    nuiData[playerId] = {}
+    local nextId = #nuiData+1
+    nuiData[nextId] = {}
     for id, columnData in pairs(columns) do
-      nuiData[playerId][columnData.friendlyName] = ply.state[columnData.friendlyName]
+      nuiData[nextId][id] = ply.state[columnData.friendlyName]
     end
   end
-  print(json.encode(nuiData))
   -- send to NUI to populate players
+  SendNUIMessage({
+      app = 'CfxScoreboard',
+      method = 'setPlayers',
+      data = nuiData
+    })
 end)
 
 TriggerServerEvent("scoreboard:requestColumns")
