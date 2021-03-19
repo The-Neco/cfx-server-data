@@ -19,6 +19,51 @@ function App() {
       })
     )
   }, 1000)
+
+  setTimeout(() => {
+    window.dispatchEvent(
+      new MessageEvent('message', {
+        data: {
+          app: 'CfxScoreboard',
+          method: 'setColumns',
+          data: [
+            {
+              friendlyName: "ID",
+              defaultValue: 1,
+              position: 0
+            },
+            {
+              friendlyName: "Name",
+              defaultValue: "",
+              position: 1
+            },
+          ]
+        }
+      })
+    )
+  }, 1000)
+
+  setTimeout(() => {
+    window.dispatchEvent(
+      new MessageEvent('message', {
+        data: {
+          app: 'CfxScoreboard',
+          method: 'setPlayers',
+          data: [
+            [
+              1,
+              "Chip"
+            ],
+            [
+              2,
+              "Neco"
+            ]
+          ]
+        }
+      })
+    )
+  }, 1000)
+
   return (
     <div className="scoreboardWrapper">
       {visibility ? <Scoreboard /> : null}

@@ -1,5 +1,6 @@
 import { useContext, createContext, useState } from 'react';
 import { useNuiEvent } from "../utils/useNuiEvent";
+import { Columns } from "../types/columns";
 
 export const ScoreboardContext = createContext<Context | undefined>(undefined);
 
@@ -27,9 +28,9 @@ export const ScoreboardProvider = ({ children }: { children: React.ReactNode }) 
 interface Context {
 	visibility: boolean;
 	setVisibility: (show: boolean) => void;
-	columns: any;
+	columns: Columns[];
 	setColumns: (columns: any[]) => void;
-	players: any;
+	players: any[];
 	setPlayers: (players: any) => void;
 }
 
@@ -38,7 +39,12 @@ export const useScoreboard = () => {
 	return { visibility, setVisibility };
 }
 
-export const useData = () => {
+export const useColumns = () => {
 	const { columns, setColumns } = useContext(ScoreboardContext);
 	return { columns, setColumns };
+}
+
+export const usePlayers = () => {
+	const { players, setPlayers } = useContext(ScoreboardContext);
+	return { players, setPlayers }
 }
