@@ -1,20 +1,36 @@
 RegisterKeyMapping("+scoreboard", "Open the scoreboard.", "keyboard", "z")
 
 RegisterCommand("+scoreboard", function(source, args, rawcommand)
-  TriggerServerEvent("scoreboard:getPlayers")
-  SendNUIMessage({
+  if not isShowing then
+    TriggerServerEvent("scoreboard:getPlayers")
+    SendNUIMessage({
       app = 'CfxScoreboard',
       method = 'setVisibility',
       data = true
     })
+    SetNuiFocus(true, true)
+    SetNuiFocusKeepInput(true)
+    SetCursorLocation(0.5, 0.5)
+    isShowing = true
+    Citizen.CreateThread(function()
+      while isShowing do
+        Citizen.Wait(0)
+        DisableControlAction(0, 1, true)
+        DisableControlAction(0, 2, true)
+      end
+    end)
+  end
 end, false)
 
 RegisterCommand("-scoreboard", function(source, args, rawcommand)
-SendNUIMessage({
+  SendNUIMessage({
     app = 'CfxScoreboard',
     method = 'setVisibility',
     data = false
   })
+  SetNuiFocus(false, false)
+  SetNuiFocusKeepInput(false)
+  isShowing = false
 end, false)
 
 players = {}
@@ -42,8 +58,11 @@ TriggerServerEvent("scoreboard:requestColumns")
 
 RegisterNetEvent("scoreboard:receiveColumns")
 AddEventHandler("scoreboard:receiveColumns", function(_columns)
+  table.sort(_columns, function(a, b)
+    if not a or not b then return end
+    return a["position"] < b["position"]
+  end)
   columns = _columns
-
   -- Send to NUI to populate columns
   SendNUIMessage({
     app = 'CfxScoreboard',

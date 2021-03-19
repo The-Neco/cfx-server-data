@@ -1,5 +1,4 @@
 import { useColumns, usePlayers } from "./context/ScoreboardContext"
-import './App.css';
 
 export default function Scoreboard() {
 	const { columns } = useColumns();
@@ -13,7 +12,7 @@ export default function Scoreboard() {
 				<thead>
 					<tr>
 						{columns.map((column) => (
-							<th key={column.position}>{column.friendlyName}</th>
+							<th key={column?.position}>{column?.friendlyName}</th>
 						))}
 					</tr>
 				</thead>

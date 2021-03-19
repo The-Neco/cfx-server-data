@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Scoreboard from "./Scoreboard";
 import { useScoreboard } from "./context/ScoreboardContext";
 import { useNuiService } from "./utils/useNuiService";
