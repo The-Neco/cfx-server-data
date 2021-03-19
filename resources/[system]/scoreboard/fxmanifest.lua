@@ -1,11 +1,12 @@
 fx_version 'cerulean'
 game 'gta5'
 
-ui_page 'web/html/index.html'
+ui_page 'html/index.html'
 
 files {
-  'web/html/index.html',
-  'web/html/*.js'
+  'html/index.html',
+  'html/*.js',
+  'html/*.png
 }
 
 client_script 'client.lua'
