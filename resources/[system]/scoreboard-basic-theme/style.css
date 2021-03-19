@@ -50,20 +50,13 @@
 
 .content-table tbody tr {
   color: #fff;
-  transition: .2s;
   border-bottom: 1px solid #eeeeee;
   background-color: rgba(31, 31, 31, 0.75);
 }
 
 .content-table tbody tr:nth-child(2n) {
-  background-color: rgba(31, 31, 31, 1.0);
-}
-
-.content-table tbody tr:hover {
-  background-color: rgba(31, 31, 31, 1.0);
-}
-
-.content-table tbody tr:nth-child(2n):hover {
+  color: #fff;
+  border-bottom: 1px solid #eeeeee;
   background-color: rgba(31, 31, 31, 0.75);
 }
 
