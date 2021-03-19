@@ -17,6 +17,8 @@ RegisterCommand("+scoreboard", function(source, args, rawcommand)
         Citizen.Wait(0)
         DisableControlAction(0, 1, true)
         DisableControlAction(0, 2, true)
+        DisableControlAction(0, 16, true)
+        DisableControlAction(0, 17, true)
       end
     end)
   end

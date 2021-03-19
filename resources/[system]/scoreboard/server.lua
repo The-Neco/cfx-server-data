@@ -86,14 +86,6 @@ AddEventHandler("scoreboard:updateColumnValue", function(src, columnName, value)
   end
 end)
 
-Citizen.CreateThread(function()
-  TriggerEvent("scoreboard:addColumn", "Wanted Level", 0, 2)
-  TriggerEvent("scoreboard:addColumn", "Fuck Chip", "Yeah fuck chip", -1)
-  Citizen.Wait(2000)
-  TriggerEvent("scoreboard:removeColumn", "Wanted Level")
-  TriggerEvent("scoreboard:removeColumn", "Fuck Chip")
-end)
-
 
 AddEventHandler("playerDropped", function(reason)
   players[source] = nil
