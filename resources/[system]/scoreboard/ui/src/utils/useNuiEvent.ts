@@ -35,7 +35,6 @@ export const useNuiEvent = <S = Record<string, unknown>>(
         const eventListener = (event: any) => {
             if (savedHandler.current && savedHandler.current.call) {
                 const { data } = event;
-                console.log(eventName, data)
                 const newData = currentState ? { ...currentState, ...data } : data;
                 savedHandler.current(newData);
             }

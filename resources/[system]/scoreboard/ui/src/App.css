@@ -18,7 +18,7 @@
   max-width: 100%;
   height: 600px;
   overflow: auto;
-  background-image: url("./assets/backdrop2.png");
+  background-image: url("nui://scoreboard/assets/backdrop.png");
   background-size: cover;
   background-repeat: no-repeat;
 }

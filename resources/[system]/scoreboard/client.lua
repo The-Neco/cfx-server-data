@@ -27,7 +27,6 @@ AddEventHandler("scoreboard:receivePlayers", function(_players)
     local nextId = #nuiData+1
     nuiData[nextId] = {}
     for id, columnData in pairs(columns) do
-      print(id, playerData[columnData.friendlyName])
       nuiData[nextId][id] = playerData[columnData.friendlyName]
     end
   end
